@@ -1,8 +1,8 @@
 <!doctype html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
 <meta charset="utf-8">
-<title>小推万年历，简洁美观的手机日历（HTML5版）</title>
+<title>切换公农历（HTML5版）</title>
 <meta name="description" content="小推万年历，简洁美观的手机日历">
 <meta name="Keywords" content="万年历,万年历查询,黄历,黄历查询,日历,阳历,阴历,公历,老皇历,黄道吉日,手机日历" />
 <meta name="format-detection" content="telephone=no" />
@@ -10,25 +10,57 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link href="http://cdn.tuijs.com/css/style.min.css?v=20140216" rel="stylesheet" type="text/css">
+<link href="./style.css" rel="stylesheet" type="text/css">
 </head>
 
-<body>
-<header class="toolbar" id="toolbar">
-	<span class="icon icon_calendar"></span>
-	<h1></h1>
-    <div class="action"><a href="#" class="today">回今天</a></div>
-</header>
+<body class="calendar-page">
+<div class="mask"></div>
+<div class="toolbar" id="toolbar">
+    <a href="#" id="prev" class="swipe"> < </a>
+    <!--<span class="icon icon_calendar"></span>-->
+	<h1 class="current-date"></h1>
+    <a href="#" id="next" class="swipe"> > </a>
+    <div class="action"><a href="#" class="today">今天</a></div>
+</div>
+
+<div class="select-area">
+    <div class="top-bar clearfix">
+        <a class="cancelSubmit sure-btn fl" href="#">取消</a>
+        <a class="changeSubmit sure-btn fr" href="#">确定</a>
+        <a class="changeCalendarType sure-btn fr" href="#">农历</a>
+    </div>
+    <div class="select-wrap solar-select">
+        <!--<span>公历</span>-->
+        <select id="SY" class="select-scroll">
+        </select>
+        年
+        <select id="SM" class="select-scroll">
+        </select> 月
+        <select id="SD" class="select-scroll">
+        </select> 日
+    </div>
+
+    <div class="select-wrap lunar-select" >
+        <!--<span>农历</span>-->
+        <select id="lunar-SY" class="select-scroll">
+        </select>
+        年
+        <select id="lunar-SM" class="select-scroll">
+        </select> 月
+        <select id="lunar-SD" class="select-scroll">
+        </select> 日
+    </div>
+</div>
 
 <div class="wrapper" id="wrapper">
 	<div class="date_row date_week">
-        <div class="date_item">周日</div>
-        <div class="date_item">周一</div>
-        <div class="date_item">周二</div>
-        <div class="date_item">周三</div>
-        <div class="date_item">周四</div>
-        <div class="date_item">周五</div>
-        <div class="date_item">周六</div>
+        <div class="date_item">日</div>
+        <div class="date_item">一</div>
+        <div class="date_item">二</div>
+        <div class="date_item">三</div>
+        <div class="date_item">四</div>
+        <div class="date_item">五</div>
+        <div class="date_item">六</div>
     </div>
     
     <div class="slide_wrap">
@@ -59,18 +91,39 @@
         </div>
     </div><!--date_info-->
 </div>
-<div style="overflow:hidden; width:0px; height:0px;"><img src="http://cdn.tuijs.com/upload/weixin_icon.png" /></div>
-<script type="text/javascript" src="http://cdn.tuijs.com/js/zepto.min.js"></script>
-<script type="text/javascript" src="http://cdn.tuijs.com/js/hammer.min.js"></script>
-<script type="text/javascript" src="http://cdn.tuijs.com/js/jquery.hammer.min.js"></script>
-<script type="text/javascript" src="http://cdn.tuijs.com/js/LunarCalendar.min.js?v=20140216"></script>
-<script type="text/javascript" src="http://cdn.tuijs.com/js/calendar.min.js?v=2014021601"></script>
+<div style="overflow:hidden; width:0px; height:0px;"><img src="./images/weixin_icon.png" /></div>
+<script type="text/javascript" src="./js/zepto.min.js"></script>
+<script type="text/javascript" src="./js/hammer.min.js"></script>
+<script type="text/javascript" src="./js/jquery.hammer.min.js"></script>
+<script type="text/javascript" src="./js/swipe.js"></script>
+<script type="text/javascript" src="./js/LunarCalendar.js"></script>
+<script type="text/javascript" src="./js/calendar.js"></script>
 
 <div style=" width:1px; height:1px; overflow:hidden; position:relative; top:-1px; left:0px;">
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3422756863814e3a41840696a677296e' type='text/javascript'%3E%3C/script%3E"));
-</script>
+
+    <script>
+        ! function() {
+            function a() {
+                if (document.documentElement.clientWidth <= 750 ) {
+                    document.documentElement.style.fontSize = document.documentElement.clientWidth / 15 + "px";
+                } else {
+                    document.documentElement.style.fontSize = 50 + "px"
+                }
+
+            }
+            var b = null;
+            window.addEventListener("resize", function() {
+                clearTimeout(b), b = setTimeout(a, 0)
+            }, !1), a()
+        }(window);
+        $('#prev').on('click',function(){
+            $('.slide_wrap').trigger("swiperight");
+        });
+        $('#next').on('click',function(){
+            $('.slide_wrap').trigger("swipeleft");
+        });
+
+    </script>
 </div>
 </body>
 </html>

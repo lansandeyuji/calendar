@@ -1,8 +1,16 @@
 @charset "utf-8";
 /* CSS Document */
-body {
-	font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+
+html,body {
 	word-wrap:break-word;
+    height: 100%;
+}
+body {
+    font: 400 14px/1.5 Arial,sans-serif;
+    color: #5e5e5e;
+    background-color: #f6f6f6;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: none
 }
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,figure,time {
 	margin:0;
@@ -48,14 +56,14 @@ html {
 	-webkit-text-size-adjust:100%;
 	-ms-text-size-adjust:100%
 }
-body {
+.calendar-page {
 	margin:0;
 	font-size:14px;
 	line-height:1.231;
 	height:100%;
 	width:100%;
-	background:#e8e8e8;
-	padding-bottom:30px;
+    background: url(http://s18.mogucdn.com/p1/151209/upload_ifrwcnbymq3tozbvguzdambqhayde_750x1206.jpg ) no-repeat;
+    background-size: cover;
 }
 input,button {
 	-webkit-tap-highlight-color:rgba(0,0,0,0)
@@ -73,7 +81,19 @@ input,input:focus,select:focus {
 .hide{ display:none;}
 .show{ display:block;}
 
-.icon{ background:url(http://cdn.tuijs.com/upload/icon.png) no-repeat; width:36px; height:36px; display:block;}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.clearfix:after {
+    display: block;
+    content: '';
+    clear: both;
+    visibility: hidden
+}
+.icon{ background:url(./images/icon.png) no-repeat; width:36px; height:36px; display:block;}
 .icon_set{ background-position:0 -64px;}
 
 .toolbar{
@@ -83,39 +103,58 @@ input,input:focus,select:focus {
 	left:0px;
 	top:0px;
 	z-index:999;
-	height: 46px;
-	background-image: -webkit-gradient(linear,center top,center bottom,from(#df481a), to(#c82713));
-	background-color:#d33716;
-	border-bottom:1px solid #ec6624;
-	display: -webkit-box; 
+	height: 2rem;
+    /*padding-left:25% ;*/
+	/*background-image: -webkit-gradient(linear,center top,center bottom,from(#df481a), to(#c82713));*/
+	/*background-color:#d33716;*/
+	/*border-bottom:1px solid #ec6624;*/
+	display: -webkit-box;
     display: box;
 }
 .toolbar h1{
-	margin:5px 0 0 10px;
-	height:36px;
-	line-height:36px;
-	font-size:22px;
-	color:#FFF;
-	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
-	font-weight:bold;
-	-webkit-box-flex: 2; 
-    box-flex: 2;
-}
-.toolbar .icon_calendar{
-	margin:5px 0 0 10px;
-}
-.toolbar .action{
-	margin:5px 10px;
-	display:block;
+	margin:10px 10px 0;
+    width: 6rem;
+    text-align: center;
 	height:36px;
 	line-height:36px;
 	font-size:20px;
-	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
-	font-weight:bold;
 	color:#FFF;
-	text-align:right;
-	-webkit-box-flex: 1; 
-    box-flex: 1;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+	/*font-weight:bold;*/
+    border-radius: 30px;
+    /*border: 1px solid gray;*/
+    background: rgba(0,0,0,0.1);
+	/*-webkit-box-flex: 1;*/
+    /*box-flex: 1;*/
+    /*width: 1rem;*/
+    /*background:url(./images/icon.png) no-repeat right center;*/
+}
+.toolbar .swipe{
+    margin:10px 0 0 5px;
+    /*height:36px;*/
+    line-height:36px;
+    font-size:18px;
+    color:#FFF;
+    display: block;
+}
+#prev{
+    margin-left: 3.6rem;
+}
+.toolbar .icon_calendar{
+	margin:6px 0 0 10px;
+}
+.toolbar .action{
+	margin:8px 25px 0;
+	display:block;
+	/*height:36px;*/
+	line-height:36px;
+	font-size:20px;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+	/*font-weight:bold;*/
+    text-align: right;
+	color:#FFF;
+	/*-webkit-box-flex: 1;*/
+    /*box-flex: 1;*/
 }
 .toolbar .action .today{
 	color:#FFF;
@@ -139,7 +178,7 @@ input,input:focus,select:focus {
 	-webkit-transition-duration: 300ms;*/
 }
 .date_list{
-	font-family: "Courier New", "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+	/*font-family: "Courier New", "Helvetica Neue", Helvetica, STHeiTi, sans-serif;*/
 	position:absolute;
 	top:0px;
 	left:0px;
@@ -153,29 +192,32 @@ input,input:focus,select:focus {
 .date_row .date_item{
 	-webkit-box-flex: 1; 
     box-flex: 1;
-	border-color:#cecece;
-	border-style:solid;
-	border-width:0 1px 1px 0;
-	color:#5b5b5b;
+	/*border-color:#cecece;*/
+	/*border-style:solid;*/
+	/*border-width:0 1px 1px 0;*/
+	/*color:#5b5b5b;*/
+    color:#FFFFFF;
 	position:relative;
-	text-align:right;
+	text-align:center;
 	overflow:hidden;
 	width: 0%;
-	padding:6px 5px;
-	height:40px;
+	padding:0.3rem 0;
+	/*height:40px;*/
+    /*height: 2rem;*/
 }
 .date_item:last-child{
-	border-right:none;
+	/*border-right:none;*/
 }
 .date_item .date_day{
-	font-size:20px;
+	font-size:0.9rem;
 	display:block;
 }
 .date_item .date_lunar{
-	height:16px;
-	line-height:16px;
-	font-size:12px;
-	color:#8a8a8a;
+	height:0.48rem;
+	line-height:0.48rem;
+	font-size:0.48rem;
+	/*color:#8a8a8a;*/
+    color:#E0D9D9;
 	display:block;
 	overflow: hidden;
     text-overflow: ellipsis;
@@ -183,10 +225,10 @@ input,input:focus,select:focus {
     word-wrap: normal;
 }
 .date_item .lunar_fetv{
-	color:#14a700;
+	/*color:#14a700;*/
 }
 .date_item .solar_fetv{
-	color:#d43111;
+	/*color:#d43111;*/
 }
 .date_item .date_icon{
 	position:absolute;
@@ -207,22 +249,32 @@ input,input:focus,select:focus {
 	border:1px solid #87c7e2;
 	display:block;
 }
-.date_row .date_today{
-	background-color:#b8bdbf;
-	color:#FFF;
-}
+
+/*.date_row .date_today{*/
+    /*background-color: #282b5d;*/
+    /*color: #FFF;*/
+    /*opacity: 0.3;*/
+    /*border-radius: 50%*/
+/*}*/
 .date_row .date_today .date_lunar{
 	color:#FFF;
+
 }
 .date_row .date_current{
-	background-color:#c82713;
-	color:#FFF;
+    background-color: #282b5d;
+
+    color: #FFF;
+    opacity: 0.3;
+    border-radius: 50%
 }
 .date_row .date_current .date_lunar{
 	color:#FFF;
 }
 .date_row .date_other{
 	opacity:0.4;
+}
+.date_row .full{
+    opacity:0;
 }
 .date_week .date_item{
 	line-height:30px;
@@ -236,6 +288,8 @@ input,input:focus,select:focus {
 /*指定日期详情*/
 .date_info{
 	padding:10px;
+    background: #fff;
+    margin-top: 20px;
 }
 .date_lunar_info{
 	color:#d96b6b;
@@ -287,4 +341,61 @@ input,input:focus,select:focus {
 }
 .hl_j_content{
 	color:#d43111;
+}
+.select-area{
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 99;
+    background-color: #FFFFFF;
+}
+.select-wrap{
+    height: 6rem;
+    padding-left: 2.4rem;
+}
+.select-scroll{
+    width: 2.7rem;
+}
+.solar-select{
+    display: block;
+}
+.lunar-select{
+    display: none;
+}
+.top-bar{
+    padding: 3.47% 4.27%;
+    border-bottom: solid 1px #f1f1f1;
+}
+.sure-btn {
+    display: block;
+    width: 17.73%;
+    font-size: 0.64rem;
+    color: gray;
+    /*background: #ff628e;*/
+    line-height: 1.4rem;
+    height: 1.4rem;
+    text-align: center;
+    border-radius: 2px;
+}
+.cancel {
+    display: block;
+    width: 17.73%;
+    font-size: 0.64rem;
+    color: gray;
+    line-height: 1.2rem;
+    height: 1.2rem;
+    text-align: center;
+    /*border: solid 1px #ff628e;*/
+    /*border-radius: 2px;*/
+}
+
+.mask {
+    position: absolute;
+    top:0;
+    left: 0;
+    display: none;
+    width: 100%;
+    padding-bottom: 130%;
+    background: rgba(0, 0, 0, 0.4);
 }

@@ -1,3 +1,6 @@
+
+#基于JasonZhou
+
 #LunarCalendar#
 
 农历（阴历）万年历，是一款支持Node.js和浏览器端使用的全功能农历和公历日历类库。支持农历与公历之间相互转换，含有二十四节气，天干地支纪年纪月纪日，生肖属相，公历节假日及农历传统节假日信息等功能。自带2013-2014节假日安排数据，并可自行配置。带有黄历数据，可自行选择配置。支持1891-2100年。使用**LunarCalendar**可快速开发一款属于自己的万年历产品，行动起来吧！
@@ -20,7 +23,6 @@ var LunarCalendar = require("lunar-calendar");
 ##DEMO产品：小推万年历（手机版）##
 访问方式：（手机扫描二维码）
 
-![二维码](http://cdn.tuijs.com/upload/1956115939.png)
 
 ![小推万年历截图](http://cdn.tuijs.com/upload/calendar_photo.png)
 
@@ -189,9 +191,3 @@ http://api.tuijs.com/lunarToSolar?year=2011&month=1&day=1&callback=fn
 
 返回：
 `fn({"year":2011,"month":2,"day":16})`
-
-##其它##
-- 项目主页：[http://www.tuijs.com/](http://www.tuijs.com/ "项目主页")
-- 作者博客：[http://www.2fz1.com/](http://www.2fz1.com/ "作者博客")
-
-JasonZhou
